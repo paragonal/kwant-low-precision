@@ -607,7 +607,9 @@ def make_proper_modes(lmbdainv, psi, extract, tol, particle_hole,
     numerically computed modes are typically a superposition of the real
     modes. In this case, also the proper (orthogonal) modes are computed.
     """
-    vel_eps = np.finfo(psi.dtype).eps * tol
+    
+    # Better way of computing our machine_eps
+    vel_eps = np.finfo(psi.dtype).eps * tol / 2 * np.min(np.abs(psi)) 
 
     nmodes = psi.shape[1]
     n = len(psi) // 2
