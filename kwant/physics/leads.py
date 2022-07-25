@@ -609,8 +609,11 @@ def make_proper_modes(lmbdainv, psi, extract, tol, particle_hole,
     """
     
     # Better way of computing our machine_eps
-    vel_eps = np.finfo(psi.dtype).eps * tol / 2 * np.min(np.abs(psi)) 
-
+    #vel_eps = np.finfo(psi.dtype).eps * tol / 2 * np.min(np.abs(psi))
+    
+    # manually computed realistic vel_eps
+    vel_eps = 5e-50 
+    
     nmodes = psi.shape[1]
     n = len(psi) // 2
 
